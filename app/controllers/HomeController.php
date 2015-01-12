@@ -8,4 +8,13 @@ class HomeController extends BaseController
     {
         $this->layout->content = View::make('index');
     }
+
+    public function analytics()
+    {
+        if (Input::hasFile('source')) {
+            $file = Input::file('source');
+            $path = $file->getRealPath();
+            dd($path);
+        }
+    }
 }
