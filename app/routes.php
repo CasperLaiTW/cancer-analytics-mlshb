@@ -11,7 +11,5 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
+Route::get('/', ['as' => 'default', 'uses' => 'HomeController@index']);
+Route::post('analytics', ['as' => 'analytics', 'uses' => 'HomeController@analytics']);
