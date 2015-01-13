@@ -13,6 +13,10 @@
     "tests"
   ],
   "dependencies": {
-    "flat-ui": "~2.2.2"
+    "flat-ui": "~2.2.2",
+    "angularjs": "1.2.*",
+    "papaparse": "~4.0.7",
+    "angular-route": "1.2.*",
+    "ng-underscore": "~0.1.0"
   }
 }

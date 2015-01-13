@@ -1,12 +1,52 @@
 @section('main')
-    <div class="jumbotron">
-        <h1>分析名單</h1>
-        {{ Form::open(['route' => ['analytics'], 'files' => true]) }}
+    <div ng-controller="analyticsCtrl">
+        <div class="jumbotron">
+            <h1>名單分析</h1>
             <div class="form-group">
-                {{ Form::file('source') }}
+                <input type="file" id="source">
                 <p class="help-block">請選擇名單</p>
             </div>
-            <button type="submit" class="btn btn-default">開始分析</button>
-        {{ Form::close() }}
+            <button type="button" class="btn btn-default" ng-click="analytics();">開始分析</button>
+        </div>
+
+        <div class="result" ng-show="first.length > 0">
+            <h6>未篩含首篩名單</h6>
+            <table class="table table-striped">
+                <thead>
+                    <th>
+                        <tr>地區</tr>
+                        <tr>數量</tr>
+                    </th>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="(key, value) in first">
+                        <td><% key %></td>
+                        <td><% value %></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="result" ng-show="needWork.length > 0">
+            <h6>103年已篩</h6>
+            <table class="table table-striped">
+                <thead>
+                    <th>
+                        <tr>地區</tr>
+                        <tr>數量</tr>
+                    </th>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="(key, value) in needWork">
+                        <td><% key %></td>
+                        <td><% value %></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
+@stop
+
+@section('scripts')
+    {{ HTML::script('/scripts/app.js') }}
 @stop
