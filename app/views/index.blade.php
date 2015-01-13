@@ -6,7 +6,7 @@
                 <input type="file" id="source" accept=".txt">
                 <p class="help-block">請選擇名單</p>
             </div>
-            <button type="button" class="btn btn-default" ng-click="analytics();">開始分析</button>
+            <button type="button" class="btn btn-default btn-primary" ng-click="analytics();">開始分析</button>
         </div>
 
         <div class="result">
