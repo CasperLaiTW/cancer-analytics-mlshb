@@ -2,7 +2,7 @@
 <html lang="zh-tw">
 <head>
     <meta charset="UTF-8">
-    <title>首篩/未首篩分析</title>
+    <title>首篩/未篩分析</title>
     {{ HTML::style("/vendor/bootstrap/dist/css/bootstrap.min.css") }}
     {{ HTML::style('/vendor/angular-dialog-service/dist/dialogs.min.css') }}
     {{ HTML::style("/vendor/flat-ui/dist/css/flat-ui.min.css") }}
