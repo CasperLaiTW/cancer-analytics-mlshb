@@ -10,7 +10,7 @@
         </div>
 
         <div class="result">
-            <h6>未篩含首篩名單</h6>
+            <h6>首篩名單</h6>
             <table class="table table-striped">
                 <thead>
                     <th>
@@ -28,7 +28,7 @@
         </div>
 
         <div class="result">
-            <h6>已篩</h6>
+            <h6>未篩名單</h6>
             <table class="table table-striped">
                 <thead>
                     <th>
