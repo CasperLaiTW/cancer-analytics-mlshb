@@ -30,7 +30,6 @@ var analyticsCtrl = function ($scope, underscore) {
                         }
                     }
                 });
-                console.log($scope.first, $scope.needWork);
                 $scope.$apply();
             }
         });

@@ -9,7 +9,7 @@
             <button type="button" class="btn btn-default" ng-click="analytics();">開始分析</button>
         </div>
 
-        <div class="result" ng-show="first.length > 0">
+        <div class="result">
             <h6>未篩含首篩名單</h6>
             <table class="table table-striped">
                 <thead>
@@ -27,7 +27,7 @@
             </table>
         </div>
 
-        <div class="result" ng-show="needWork.length > 0">
+        <div class="result">
             <h6>103年已篩</h6>
             <table class="table table-striped">
                 <thead>
