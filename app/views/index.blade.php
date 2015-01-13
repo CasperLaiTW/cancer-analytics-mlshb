@@ -28,7 +28,7 @@
         </div>
 
         <div class="result">
-            <h6>103年已篩</h6>
+            <h6>已篩</h6>
             <table class="table table-striped">
                 <thead>
                     <th>
