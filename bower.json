@@ -17,6 +17,7 @@
     "angularjs": "1.2.*",
     "papaparse": "~4.0.7",
     "angular-route": "1.2.*",
-    "ng-underscore": "~0.1.0"
+    "ng-underscore": "~0.1.0",
+    "angular-dialog-service": "~5.2.6"
   }
 }

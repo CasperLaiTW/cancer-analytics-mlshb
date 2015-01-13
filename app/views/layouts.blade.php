@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>首篩/未首篩分析</title>
-    {{ HTML::style("/vendor/flat-ui/dist/css/vendor/bootstrap.min.css") }}
+    {{ HTML::style("/vendor/bootstrap/dist/css/bootstrap.min.css") }}
+    {{ HTML::style('/vendor/angular-dialog-service/dist/dialogs.min.css') }}
     {{ HTML::style("/vendor/flat-ui/dist/css/flat-ui.min.css") }}
 
     <!--[if lt IE 9]>
@@ -11,11 +12,19 @@
     {{ HTML::script("//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js") }}
     <![endif]-->
     {{ HTML::script("/vendor/flat-ui/dist/js/vendor/jquery.min.js") }}
-    {{ HTML::script("/vendor/flat-ui/dist/js/flat-ui.min.js") }}
     {{ HTML::script("/vendor/angularjs/angular.min.js") }}
+    {{ HTML::script('/vendor/angular-sanitize/angular-sanitize.min.js') }}
     {{ HTML::script("/vendor/angular-route/angular-route.min.js") }}
+
+    {{ HTML::script('/vendor/bootstrap/dist/js/bootstrap.min.js') }}
+    {{ HTML::script('/vendor/angular-bootstrap/ui-bootstrap-tpls.min.js') }}
+
+    {{ HTML::script("/vendor/flat-ui/dist/js/flat-ui.min.js") }}
+
     {{ HTML::script("/vendor/ng-underscore/build/ng-underscore.min.js") }}
     {{ HTML::script("/vendor/papaparse/papaparse.min.js") }}
+    {{ HTML::script('/vendor/angular-dialog-service/dist/dialogs.min.js') }}
+
     @yield('scripts')
 </head>
 <body ng-app="analytics">
