@@ -3,7 +3,7 @@
         <div class="jumbotron">
             <h1>名單分析</h1>
             <div class="form-group">
-                <input type="file" id="source" accept=".txt">
+                <input type="file" id="source" accept=".txt,.csv">
                 <p class="help-block">請選擇名單</p>
             </div>
             <button type="button" class="btn btn-default btn-primary" ng-click="analytics();">開始分析</button>

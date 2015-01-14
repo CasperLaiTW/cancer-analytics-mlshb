@@ -40,7 +40,7 @@ var analyticsCtrl = function ($scope, underscore, dialogs, $rootScope, SweetAler
                         if(item[1] === '' && item[0] === '') {
                             var count = $scope.needWork[area] === undefined ? 0 : $scope.needWork[area];
                             $scope.needWork[area] = count + 1;
-                        } else if (item[0] === 'V') {
+                        } else if (item[0] === 'V' && item[1] === '') {
                             var count = $scope.first[area] === undefined ? 0 : $scope.first[area];
                             $scope.first[area] = count + 1;
                         }
