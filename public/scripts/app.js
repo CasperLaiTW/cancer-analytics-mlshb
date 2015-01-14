@@ -1,4 +1,4 @@
-var app = angular.module('analytics', ['ngUnderscore', 'ui.bootstrap', 'dialogs.main']);
+var app = angular.module('analytics', ['ngUnderscore', 'ui.bootstrap', 'dialogs.main', 'oitozero.ngSweetAlert']);
 
 app.config(function ($interpolateProvider, dialogsProvider) {
     $interpolateProvider.startSymbol('<%');
@@ -6,7 +6,7 @@ app.config(function ($interpolateProvider, dialogsProvider) {
     dialogsProvider.useBackdrop('static');
 });
 
-var analyticsCtrl = function ($scope, underscore, dialogs, $rootScope) {
+var analyticsCtrl = function ($scope, underscore, dialogs, $rootScope, SweetAlert) {
     $scope.first = {};
     $scope.analytics = function () {
         if (document.getElementById('source').files.length === 0) {
@@ -54,6 +54,7 @@ var analyticsCtrl = function ($scope, underscore, dialogs, $rootScope) {
     var progress = function (progress) {
         if (progress > 99) {
             $rootScope.$broadcast('dialogs.wait.complete');
+            SweetAlert.swal("Good job!", "分析完成!", "success");
         } else {
             $rootScope.$broadcast('dialogs.wait.progress',{'progress' : progress});
         }

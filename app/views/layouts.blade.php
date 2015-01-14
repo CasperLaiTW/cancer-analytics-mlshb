@@ -6,6 +6,7 @@
     {{ HTML::style("/vendor/bootstrap/dist/css/bootstrap.min.css") }}
     {{ HTML::style('/vendor/angular-dialog-service/dist/dialogs.min.css') }}
     {{ HTML::style("/vendor/flat-ui/dist/css/flat-ui.min.css") }}
+    {{ HTML::style('/vendor/sweetalert/lib/sweet-alert.css') }}
 
     <style>
         .container .credit{
@@ -30,6 +31,8 @@
     {{ HTML::script("/vendor/ng-underscore/build/ng-underscore.min.js") }}
     {{ HTML::script("/vendor/papaparse/papaparse.min.js") }}
     {{ HTML::script('/vendor/angular-dialog-service/dist/dialogs.min.js') }}
+    {{ HTML::script('/vendor/sweetalert/lib/sweet-alert.min.js') }}
+    {{ HTML::script('/vendor/angular-sweetalert/SweetAlert.min.js') }}
 
     @yield('scripts')
 </head>
