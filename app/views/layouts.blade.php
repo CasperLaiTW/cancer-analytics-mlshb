@@ -7,6 +7,12 @@
     {{ HTML::style('/vendor/angular-dialog-service/dist/dialogs.min.css') }}
     {{ HTML::style("/vendor/flat-ui/dist/css/flat-ui.min.css") }}
 
+    <style>
+        .container .credit{
+            margin: 20px 0;
+        }
+    </style>
+
     <!--[if lt IE 9]>
     {{ HTML::script("//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js") }}
     {{ HTML::script("//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js") }}
@@ -40,5 +46,10 @@
     <div class="container">
         @yield('main')
     </div>
+    <footer>
+        <div class="container">
+            <p class="credit small">Copyright &copy; 2015 iuix. All Rights Reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>

@@ -7,8 +7,12 @@ app.config(function ($interpolateProvider, dialogsProvider) {
 });
 
 var analyticsCtrl = function ($scope, underscore, dialogs, $rootScope) {
-
+    $scope.first = {};
     $scope.analytics = function () {
+        if (document.getElementById('source').files.length === 0) {
+            dialogs.error('發生錯誤', '請選擇檔案');
+            return;
+        }
         var dlg = dialogs.wait(undefined, undefined, 0);
         $scope.first = {};
         $scope.needWork = {};
@@ -55,6 +59,5 @@ var analyticsCtrl = function ($scope, underscore, dialogs, $rootScope) {
         }
     };
 };
-
 
 app.controller('analyticsCtrl', analyticsCtrl);
