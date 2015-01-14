@@ -20,7 +20,7 @@ var analyticsCtrl = function ($scope, underscore, dialogs, $rootScope, SweetAler
             config: {
                 header: true,
                 fastMode: true,
-                encoding: 'big5'
+                encoding: 'BIG5'
             },
             before: function () {
                 $rootScope.$broadcast('dialogs.wait.progress',{'progress' : 0});

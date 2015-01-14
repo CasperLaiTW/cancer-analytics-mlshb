@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-tw">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <title>首篩/未篩分析</title>
     {{ HTML::style("/vendor/bootstrap/dist/css/bootstrap.min.css") }}
     {{ HTML::style('/vendor/angular-dialog-service/dist/dialogs.min.css') }}
