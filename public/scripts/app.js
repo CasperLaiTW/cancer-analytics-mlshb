@@ -16,37 +16,36 @@ var analyticsCtrl = function ($scope, underscore, dialogs, $rootScope, SweetAler
         var dlg = dialogs.wait(undefined, undefined, 0);
         $scope.first = {};
         $scope.needWork = {};
-        Papa.parse(document.getElementById('source').files[0], {
+        $('#source').parse({
             config: {
-                header: true,
-                fastMode: true,
-                encoding: 'BIG5'
+                encoding: 'big5',
+                complete: function (results) {
+                    results.data.shift();
+                    if (results.data.length == 0) {
+                        return;
+                    }
+                    var total = results.data.length;
+                    underscore.each(results.data, function (item, key) {
+                        progress(key / total * 100);
+                        if (underscore.size(item) != 1) {
+                            var words = item[6].split(/(　|\s)?\d+/);
+                            var area = words[0];
+                            if(item[1] === '' && item[0] === '') {
+                                var count = $scope.needWork[area] === undefined ? 0 : $scope.needWork[area];
+                                $scope.needWork[area] = count + 1;
+                            } else if (item[0] === 'V' && item[1] === '') {
+                                var count = $scope.first[area] === undefined ? 0 : $scope.first[area];
+                                $scope.first[area] = count + 1;
+                            }
+                        }
+                    });
+                    $scope.$apply();
+                }
             },
             before: function () {
                 $rootScope.$broadcast('dialogs.wait.progress',{'progress' : 0});
-            },
-            complete: function(results) {
-                results.data.shift();
-                if (results.data.length == 0) {
-                    return;
-                }
-                var total = results.data.length;
-                underscore.each(results.data, function (item, key) {
-                    progress(key / total * 100);
-                    if (item.length != 1) {
-                        var words = item[6].split(/(　|\s)?\d+/);
-                        var area = words[0];
-                        if(item[1] === '' && item[0] === '') {
-                            var count = $scope.needWork[area] === undefined ? 0 : $scope.needWork[area];
-                            $scope.needWork[area] = count + 1;
-                        } else if (item[0] === 'V' && item[1] === '') {
-                            var count = $scope.first[area] === undefined ? 0 : $scope.first[area];
-                            $scope.first[area] = count + 1;
-                        }
-                    }
-                });
-                $scope.$apply();
             }
+
         });
     };
 
