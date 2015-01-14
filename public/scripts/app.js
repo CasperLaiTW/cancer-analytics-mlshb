@@ -31,7 +31,6 @@ var analyticsCtrl = function ($scope, underscore, dialogs, $rootScope, SweetAler
                     return;
                 }
                 var total = results.data.length;
-                console.log(results.data);
                 underscore.each(results.data, function (item, key) {
                     progress(key / total * 100);
                     if (item.length != 1) {
