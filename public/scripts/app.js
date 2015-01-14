@@ -19,7 +19,8 @@ var analyticsCtrl = function ($scope, underscore, dialogs, $rootScope, SweetAler
         Papa.parse(document.getElementById('source').files[0], {
             config: {
                 header: true,
-                fastMode: true
+                fastMode: true,
+                encoding: 'big5'
             },
             before: function () {
                 $rootScope.$broadcast('dialogs.wait.progress',{'progress' : 0});
