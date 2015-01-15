@@ -9,7 +9,10 @@
     {{ HTML::style('/vendor/sweetalert/lib/sweet-alert.css') }}
 
     <style>
-        .container .credit{
+        body {
+            padding-top: 70px;
+        }
+        .container .credit {
             margin: 20px 0;
         }
     </style>
@@ -38,7 +41,7 @@
 </head>
 <body ng-app="analytics">
     <!-- Static navbar -->
-    <div class="navbar navbar-default" role="navigation">
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
           <a class="navbar-brand" href="#">首篩/未首篩分析</a>

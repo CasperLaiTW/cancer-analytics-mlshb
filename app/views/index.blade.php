@@ -6,17 +6,39 @@
                 <input type="file" id="source" accept=".txt,.csv">
                 <p class="help-block">請選擇名單</p>
             </div>
-            <button type="button" class="btn btn-default btn-primary" ng-click="analytics();">開始分析</button>
+            <button type="button" class="btn btn-primary" ng-click="analytics();">開始分析</button>
         </div>
 
-        <div class="result">
+        <div class="result" ng-show="mixed">
+            <h6 class="page-header"></h6>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>地區</th>
+                        <th>已篩名單</th>
+                        <th>首篩名單</th>
+                        <th>未篩名單</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="(key, value) in areas">
+                        <td><% value %></td>
+                        <td><% isDone[value] | zero %></td>
+                        <td><% first[value] | zero %></td>
+                        <td><% needWork[value] | zero %></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="result" ng-hide="mixed">
             <h6 class="page-header">首篩名單</h6>
             <table class="table table-striped">
                 <thead>
-                    <th>
-                        <tr>地區</tr>
-                        <tr>數量</tr>
-                    </th>
+                    <tr>
+                        <th>地區</th>
+                        <th>數量</th>
+                    </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="(key, value) in first">
@@ -27,14 +49,14 @@
             </table>
         </div>
 
-        <div class="result">
+        <div class="result"  ng-hide="mixed">
             <h6 class="page-header">未篩名單</h6>
             <table class="table table-striped">
                 <thead>
-                    <th>
-                        <tr>地區</tr>
-                        <tr>數量</tr>
-                    </th>
+                    <tr>
+                        <th>地區</th>
+                        <th>數量</th>
+                    </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="(key, value) in needWork">
@@ -45,14 +67,14 @@
             </table>
         </div>
 
-        <div class="result">
+        <div class="result"  ng-hide="mixed">
             <h6 class="page-header">已篩名單</h6>
             <table class="table table-striped">
                 <thead>
-                    <th>
-                        <tr>地區</tr>
-                        <tr>數量</tr>
-                    </th>
+                    <tr>
+                        <th>地區</th>
+                        <th>數量</th>
+                    </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="(key, value) in isDone">

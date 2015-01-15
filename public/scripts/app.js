@@ -7,6 +7,9 @@ app.config(function ($interpolateProvider, dialogsProvider) {
 });
 
 var analyticsCtrl = function ($scope, underscore, dialogs, $rootScope, SweetAlert) {
+
+    $scope.mixed = true;
+
     $scope.analytics = function () {
         if (document.getElementById('source').files.length === 0) {
             dialogs.error('發生錯誤', '請選擇檔案');
@@ -16,6 +19,7 @@ var analyticsCtrl = function ($scope, underscore, dialogs, $rootScope, SweetAler
         $scope.first = {};
         $scope.needWork = {};
         $scope.isDone = {};
+        $scope.areas = [];
 
         $('#source').parse({
             config: {
@@ -27,11 +31,13 @@ var analyticsCtrl = function ($scope, underscore, dialogs, $rootScope, SweetAler
                     }
                     var total = results.data.length;
                     underscore.each(results.data, function (item, key) {
-                        progress(key / total * 100);
+                        progress(key / total *   100);
                         if (underscore.size(item) != 1) {
                             var words = item[6].split(/(　|\s)?\d+/);
                             var area = words[0];
-
+                            if (underscore.indexOf($scope.areas, area) === -1) {
+                                $scope.areas.push(area);
+                            }
                             if (item[0] === 'V' && item[1] !== '') {
                                 // 首篩已篩
                                 var count = $scope.isDone[area] === undefined ? 0 : $scope.isDone[area];
@@ -68,3 +74,12 @@ var analyticsCtrl = function ($scope, underscore, dialogs, $rootScope, SweetAler
 };
 
 app.controller('analyticsCtrl', analyticsCtrl);
+
+app.filter('zero', function () {
+    return function(input) {
+        if (input) {
+            return input;
+        }
+        return 0;
+    }
+});
