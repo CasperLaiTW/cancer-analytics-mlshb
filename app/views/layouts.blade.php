@@ -44,7 +44,7 @@
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">首篩/未首篩分析</a>
+          <a class="navbar-brand" href="#">大腸癌篩檢已篩/首篩/未首篩分析</a>
         </div>
       </div>
     </div>
