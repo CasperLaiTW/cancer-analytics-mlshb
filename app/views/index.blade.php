@@ -15,9 +15,10 @@
                 <thead>
                     <tr>
                         <th>地區</th>
-                        <th>已篩名單</th>
-                        <th>首篩名單</th>
-                        <th>未篩名單</th>
+                        <th>首篩已篩數</th>
+                        <th>首篩數</th>
+                        <th>未篩數</th>
+                        <th>總數</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -26,6 +27,7 @@
                         <td><% isDone[value] | zero %></td>
                         <td><% first[value] | zero %></td>
                         <td><% needWork[value] | zero %></td>
+                        <td><% isDone[value] + first[value] + needWork[value] %></td>
                     </tr>
                 </tbody>
             </table>
