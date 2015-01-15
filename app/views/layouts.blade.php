@@ -49,6 +49,25 @@
       </div>
     </div>
 
+    <!--[if lt IE 10]>
+        <div class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">警告</span>
+            您的瀏覽器需要更新，您適合更好的瀏覽器增加使用者體驗。
+            <p class="small text-info">支援Chrome, Firefox, IE10以上</small>
+            <ul>
+                <li>
+                    <a href="https://www.google.com.tw/chrome/browser/desktop/index.html" class="alert-link" target="_blank">Chrome</a>
+                </li>
+                <li>
+                    <a href="http://mozilla.com.tw/firefox/new/" class="alert-link" target="_blank">Firefox</a>
+                </li>
+                <li>
+                    <a href="http://windows.microsoft.com/zh-tw/internet-explorer/ie-11-worldwide-languages" class="alert-link" target="_blank">IE 11</a>
+                </li>
+            </ul>
+        </div>
+    <![endif] -->
     <div class="container">
         @yield('main')
     </div>
