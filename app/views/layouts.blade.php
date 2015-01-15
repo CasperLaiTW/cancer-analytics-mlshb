@@ -78,8 +78,8 @@
     </div>
     <footer>
       <div class="container">
-        <p class="credit small">Designed by <a href="http://www.i-uix.com">i-uix</a></p>
-        <p class="small">Copyright &copy; 2015 <a href="http://www.i-uix.com">i-uix</a>. All Rights Reserved.</p>
+        <p class="credit small">Designed by <a href="http://www.i-uix.com" target="_blank">i-uix</a></p>
+        <p class="small">Copyright &copy; 2015 <a href="http://www.i-uix.com" target="_blank">i-uix</a>. All Rights Reserved.</p>
       </div>
     </footer>
 </body>
