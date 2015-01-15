@@ -7,7 +7,6 @@ app.config(function ($interpolateProvider, dialogsProvider) {
 });
 
 var analyticsCtrl = function ($scope, underscore, dialogs, $rootScope, SweetAlert) {
-    $scope.first = {};
     $scope.analytics = function () {
         if (document.getElementById('source').files.length === 0) {
             dialogs.error('發生錯誤', '請選擇檔案');
@@ -16,6 +15,8 @@ var analyticsCtrl = function ($scope, underscore, dialogs, $rootScope, SweetAler
         var dlg = dialogs.wait(undefined, undefined, 0);
         $scope.first = {};
         $scope.needWork = {};
+        $scope.isDone = {};
+
         $('#source').parse({
             config: {
                 encoding: 'big5',
@@ -30,10 +31,17 @@ var analyticsCtrl = function ($scope, underscore, dialogs, $rootScope, SweetAler
                         if (underscore.size(item) != 1) {
                             var words = item[6].split(/(　|\s)?\d+/);
                             var area = words[0];
-                            if(item[1] === '' && item[0] === '') {
+
+                            if (item[0] === 'V' && item[1] !== '') {
+                                // 首篩已篩
+                                var count = $scope.isDone[area] === undefined ? 0 : $scope.isDone[area];
+                                $scope.isDone[area] = count + 1;
+                            } else if(item[1] === '' && item[0] === '') {
+                                // 未篩人數
                                 var count = $scope.needWork[area] === undefined ? 0 : $scope.needWork[area];
                                 $scope.needWork[area] = count + 1;
                             } else if (item[0] === 'V' && item[1] === '') {
+                                // 符合首篩
                                 var count = $scope.first[area] === undefined ? 0 : $scope.first[area];
                                 $scope.first[area] = count + 1;
                             }

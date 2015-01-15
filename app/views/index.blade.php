@@ -44,6 +44,24 @@
                 </tbody>
             </table>
         </div>
+
+        <div class="result">
+            <h6 class="page-header">已篩名單</h6>
+            <table class="table table-striped">
+                <thead>
+                    <th>
+                        <tr>地區</tr>
+                        <tr>數量</tr>
+                    </th>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="(key, value) in isDone">
+                        <td><% key %></td>
+                        <td><% value %></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 @stop
 
