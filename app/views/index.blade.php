@@ -12,7 +12,7 @@
         </div>
 
         <div class="result" ng-show="mixed">
-            <h6 class="page-header"></h6>
+            <h6 class="page-header">分析結果</h6>
             <table class="table table-striped">
                 <thead>
                     <tr>
