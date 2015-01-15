@@ -44,7 +44,12 @@
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+          </button>
           <a class="navbar-brand" href="#">大腸癌篩檢已篩/首篩/未首篩分析</a>
+        </div>
+        <div class="navbar-collapse collapse">
         </div>
       </div>
     </div>
@@ -69,12 +74,13 @@
         </div>
     <![endif] -->
     <div class="container">
-        @yield('main')
+      @yield('main')
     </div>
     <footer>
-        <div class="container">
-            <p class="credit small">Copyright &copy; 2015 iuix. All Rights Reserved.</p>
-        </div>
+      <div class="container">
+        <p class="credit small">Designed by <a href="http://www.i-uix.com">i-uix</a></p>
+        <p class="small">Copyright &copy; 2015 <a href="http://www.i-uix.com">i-uix</a>. All Rights Reserved.</p>
+      </div>
     </footer>
 </body>
 </html>
