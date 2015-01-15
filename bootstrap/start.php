@@ -26,7 +26,7 @@ $app = new Illuminate\Foundation\Application;
 
 $env = $app->detectEnvironment(array(
 
-    'local' => array('kmcnc-pc'),
+    'local' => array('kmcnc-pc', 'CasperdeMacBook-Pro.local'),
 
 ));
 
