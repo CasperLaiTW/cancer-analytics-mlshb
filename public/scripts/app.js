@@ -12,7 +12,7 @@ var analyticsCtrl = function ($scope, underscore, dialogs, $rootScope, SweetAler
 
     $scope.analytics = function () {
         if (document.getElementById('source').files.length === 0) {
-            dialogs.error('發生錯誤', '請選擇檔案');
+            swal("請選擇檔案", "發生錯誤", "error");
             return;
         }
         var dlg = dialogs.wait(undefined, undefined, 0);
