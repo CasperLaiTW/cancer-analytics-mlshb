@@ -1,4 +1,4 @@
-# Cancer analytics for mlshb's 05
+# Colorectal cancer analytics for mlshb's 05
 The project help to analytics data.
 
 Never saving or collecting any source data.
