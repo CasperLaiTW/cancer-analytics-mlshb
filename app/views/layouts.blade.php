@@ -47,9 +47,14 @@
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
           </button>
-          <a class="navbar-brand" href="#">大腸癌篩檢已篩/首篩/未首篩分析</a>
+          {{ HTML::linkRoute('default', '大腸癌篩檢已篩/首篩/未首篩分析', null, ['class' => 'navbar-brand']) }}
         </div>
         <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>
+                    {{ HTML::linkRoute('month', '月報表') }}
+                </li>
+            </ul>
         </div>
       </div>
     </div>

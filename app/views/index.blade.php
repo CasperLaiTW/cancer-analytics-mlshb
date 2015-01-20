@@ -93,4 +93,5 @@
 
 @section('scripts')
     {{ HTML::script('/scripts/app.js') }}
+    {{ HTML::script('/scripts/home.js') }}
 @stop
