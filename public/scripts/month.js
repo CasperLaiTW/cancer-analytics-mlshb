@@ -1,7 +1,8 @@
 var monthCtrl = function ($scope, $rootScope, underscore, SweetAlert, $filter) {
     $scope.annualReport = {
         oral: [],
-        colorectal: []
+        colorectal: [],
+        coach: []
     };
 
     function initReport() {
@@ -44,8 +45,8 @@ var monthCtrl = function ($scope, $rootScope, underscore, SweetAlert, $filter) {
                 },
                 marquee: 0,
                 cloth: 0,
-                other:0
-
+                other:0,
+                area: 0,
             };
 
             $scope.annualReport.colorectal[i] = {
@@ -62,6 +63,11 @@ var monthCtrl = function ($scope, $rootScope, underscore, SweetAlert, $filter) {
                     female: 0
                 },
             };
+
+            $scope.annualReport.coach[i] = {
+                count: 0,
+                data: []
+            }
         }
     }
 
@@ -172,6 +178,20 @@ var monthCtrl = function ($scope, $rootScope, underscore, SweetAlert, $filter) {
 
                         // other
                         $scope.annualReport.oral[month].other += item[29] !== '' ? 1 : 0;
+
+                        // area
+                        if (item[30] !== '') {
+                            $scope.annualReport.oral[month].area++;
+                        }
+
+                        // coach
+                        if (item[32] !== '' && underscore.where($scope.annualReport.coach[month].data, {date: item[32], name: item[33]}).length === 0) {
+                            $scope.annualReport.coach[month].count++;
+                            $scope.annualReport.coach[month].data.push({
+                                date: item[32],
+                                name: item[33]
+                            });
+                        }
                     });
                     callback();
                 }
@@ -204,6 +224,15 @@ var monthCtrl = function ($scope, $rootScope, underscore, SweetAlert, $filter) {
                         $scope.annualReport.colorectal[month].lectures.count++;
                         $scope.annualReport.colorectal[month].lectures.man += parseInt(item[12]);
                         $scope.annualReport.colorectal[month].lectures.female += parseInt(item[13]);
+
+                        // coach
+                        if (item[29] !== '' && underscore.where($scope.annualReport.coach[month].data, {date: item[29], name: item[30]}).length === 0) {
+                            $scope.annualReport.coach[month].count++;
+                            $scope.annualReport.coach[month].data.push({
+                                date: item[29],
+                                name: item[30]
+                            });
+                        }
                     });
                     analyticsComplete();
                 }
@@ -214,7 +243,7 @@ var monthCtrl = function ($scope, $rootScope, underscore, SweetAlert, $filter) {
     var analyticsComplete = function () {
         SweetAlert.swal("Good job!", "分析完成!", "success");
         // $scope.$apply();
-    }
+    };
 }
 
 app.controller('monthCtrl', monthCtrl);

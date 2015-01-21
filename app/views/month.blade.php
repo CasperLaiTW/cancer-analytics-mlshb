@@ -24,6 +24,8 @@
                         <th colspan="10">設站篩檢</th>
                         <th colspan="12">宣導講座</th>
                         <th colspan="17">辦理檳榔防制地方宣導工作</th>
+                        <th rowspan="3">訪查學校周邊檳榔攤</th>
+                        <th rowspan="3">診所輔導/訪視</th>
                     </tr>
                     <tr>
                         <th rowspan="2">季別</th>
@@ -123,6 +125,8 @@
                         <td><% value.marquee %></td>
                         <td><% value.cloth %></td>
                         <td><% value.other %></td>
+                        <td><% value.area %></td>
+                        <td><% annualReport.coach[key].count %></td>
                     </tr>
                 </tbody>
             </table>
