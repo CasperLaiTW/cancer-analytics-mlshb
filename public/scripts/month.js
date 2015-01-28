@@ -12,6 +12,14 @@ var monthCtrl = function ($scope, $rootScope, underscore, SweetAlert, $filter) {
                     count: 0,
                     man: 0,
                     female: 0,
+                    teenager: {
+                        man: 0,
+                        female: 0
+                    },
+                    abor: {
+                        man: 0,
+                        female: 0
+                    }
                 },
                 lectures: {
                     school: {
@@ -98,98 +106,64 @@ var monthCtrl = function ($scope, $rootScope, underscore, SweetAlert, $filter) {
                         }
                         var month = new Date(item[2]).getMonth();
 
-                        // fiter
+                        // filter
                         $scope.annualReport.oral[month].filter.count++;
-                        $scope.annualReport.oral[month].filter.man += parseInt(item[4]);
-                        $scope.annualReport.oral[month].filter.female += parseInt(item[5]);
+                        $scope.annualReport.oral[month].filter.man += parseIntFilterEmpty(item[4]);
+                        $scope.annualReport.oral[month].filter.female += parseIntFilterEmpty(item[5]);
+                        $scope.annualReport.oral[month].filter.teenager.man += parseIntFilterEmpty(item[7]);
+                        $scope.annualReport.oral[month].filter.teenager.female += parseIntFilterEmpty(item[8]);
+                        $scope.annualReport.oral[month].filter.abor.man += parseIntFilterEmpty(item[10]);
+                        $scope.annualReport.oral[month].filter.abor.female += parseIntFilterEmpty(item[11]);
 
                         // lectures
                         $scope.annualReport.oral[month].lectures.count++;
-                        $scope.annualReport.oral[month].lectures.man += parseInt(item[10]);
-                        $scope.annualReport.oral[month].lectures.female += parseInt(item[11]);
+                        $scope.annualReport.oral[month].lectures.man += parseIntFilterEmpty(item[16]);
+                        $scope.annualReport.oral[month].lectures.female += parseIntFilterEmpty(item[17]);
                         if (item[9] === '學生') {
                             $scope.annualReport.oral[month].lectures.school.count++;
-                            $scope.annualReport.oral[month].lectures.school.man += parseInt(item[10]);
-                            $scope.annualReport.oral[month].lectures.school.female += parseInt(item[11]);
+                            $scope.annualReport.oral[month].lectures.school.man += parseIntFilterEmpty(item[16]);
+                            $scope.annualReport.oral[month].lectures.school.female += parseIntFilterEmpty(item[17]);
                         }
                         // media
-                        switch(item[16])
-                        {
-                            case '新聞稿':
-                                $scope.annualReport.oral[month].media.newspaper += parseInt(item[18]);
-                                break;
-                            case '社區專欄':
-                                $scope.annualReport.oral[month].media.column += parseInt(item[18]);
-                                break;
-                            case '苗栗季刊':
-                                $scope.annualReport.oral[month].media.publication += parseInt(item[18]);
-                                break;
-                            case '雜誌':
-                                $scope.annualReport.oral[month].media.magazine += parseInt(item[18]);
-                                break;
-                            default:
-                                $scope.annualReport.oral[month].media.other += parseInt(item[18]);
-                                break;
-
-                        }
+                        $scope.annualReport.oral[month].media.newspaper += parseIntFilterEmpty(item[23]);
+                        $scope.annualReport.oral[month].media.column += parseIntFilterEmpty(item[25]);
+                        $scope.annualReport.oral[month].media.publication += parseIntFilterEmpty(item[27]);
+                        $scope.annualReport.oral[month].media.magazine += parseIntFilterEmpty(item[29]);
+                        $scope.annualReport.oral[month].media.other += parseIntFilterEmpty(item[31]);
 
                         // tv
-                        switch(item[19])
-                        {
-                            case '廣告':
-                                $scope.annualReport.oral[month].tv.adv += parseInt(item[21]);
-                                break;
-                            case '新聞報導':
-                                $scope.annualReport.oral[month].tv.report += parseInt(item[21]);
-                                break;
-                            case '節目專訪':
-                                $scope.annualReport.oral[month].tv.interview += parseInt(item[21]);
-                                break;
-                            default:
-                                $scope.annualReport.oral[month].tv.adv += parseInt(item[21]);
-                                break;
-                        }
+                        $scope.annualReport.oral[month].tv.adv += parseIntFilterEmpty(item[33]);
+                        $scope.annualReport.oral[month].tv.report += parseIntFilterEmpty(item[35]);
+                        $scope.annualReport.oral[month].tv.interview += parseIntFilterEmpty(item[37]);
+                        $scope.annualReport.oral[month].tv.other += parseIntFilterEmpty(item[39]);
 
                         // ads
-                        switch(item[22])
-                        {
-                            case '車體':
-                                $scope.annualReport.oral[month].ads.car += parseInt(item[24]);
-                                break;
-                            case '看板':
-                                $scope.annualReport.oral[month].ads.board += parseInt(item[24]);
-                                break;
-                            case '牆面彩繪':
-                                $scope.annualReport.oral[month].ads.wall += parseInt(item[24]);
-                                break;
-                            case '大型布幔':
-                                $scope.annualReport.oral[month].ads.buman += parseInt(item[24]);
-                                break;
-                            default:
-                                $scope.annualReport.oral[month].ads.other += parseInt(item[24]);
-                                break;
-                        }
+                        $scope.annualReport.oral[month].ads.car += parseIntFilterEmpty(item[41]);
+                        $scope.annualReport.oral[month].ads.board += parseIntFilterEmpty(item[43]);
+                        $scope.annualReport.oral[month].ads.wall += parseIntFilterEmpty(item[45]);
+                        $scope.annualReport.oral[month].ads.buman += parseIntFilterEmpty(item[47]);
+                        $scope.annualReport.oral[month].ads.other += parseIntFilterEmpty(item[49]);
 
                         // marquee
-                        $scope.annualReport.oral[month].marquee += parseInt(item[26]);
+                        $scope.annualReport.oral[month].marquee += parseIntFilterEmpty(item[51]);
 
                         // cloth
-                        $scope.annualReport.oral[month].cloth += parseInt(item[28]);
+                        $scope.annualReport.oral[month].cloth += parseIntFilterEmpty(item[53]);
 
                         // other
-                        $scope.annualReport.oral[month].other += item[29] !== '' ? 1 : 0;
+                        $scope.annualReport.oral[month].other += parseIntFilterEmpty(item[55]);
 
                         // area
-                        if (item[30] !== '') {
+                        if (item[57] !== '') {
                             $scope.annualReport.oral[month].area++;
                         }
 
                         // coach
-                        if (item[32] !== '' && underscore.where($scope.annualReport.coach[month].data, {date: item[32], name: item[33]}).length === 0) {
+                        if (item[58] !== '' && underscore.where($scope.annualReport.coach[month].data, {date: item[58], name: item[59]}).length === 0) {
                             $scope.annualReport.coach[month].count++;
                             $scope.annualReport.coach[month].data.push({
-                                date: item[32],
-                                name: item[33]
+                                date: item[58],
+                                name: item[59]
                             });
                         }
                     });
@@ -215,22 +189,22 @@ var monthCtrl = function ($scope, $rootScope, underscore, SweetAlert, $filter) {
                         var month = new Date(item[2]).getMonth();
                         // fiter
                         $scope.annualReport.colorectal[month].filter.count++;
-                        $scope.annualReport.colorectal[month].filter.man += parseInt(item[4]);
-                        $scope.annualReport.colorectal[month].filter.female += parseInt(item[5]);
+                        $scope.annualReport.colorectal[month].filter.man += parseIntFilterEmpty(item[4]);
+                        $scope.annualReport.colorectal[month].filter.female += parseIntFilterEmpty(item[5]);
                         $scope.annualReport.colorectal[month].filter.workplace++;
-                        $scope.annualReport.colorectal[month].filter.workplaceCount += item[7] === '' ? 0 : parseInt(item[7]);
+                        $scope.annualReport.colorectal[month].filter.workplaceCount += item[7] === '' ? 0 : parseIntFilterEmpty(item[7]);
 
                         // lectures
                         $scope.annualReport.colorectal[month].lectures.count++;
-                        $scope.annualReport.colorectal[month].lectures.man += parseInt(item[12]);
-                        $scope.annualReport.colorectal[month].lectures.female += parseInt(item[13]);
+                        $scope.annualReport.colorectal[month].lectures.man += parseIntFilterEmpty(item[12]);
+                        $scope.annualReport.colorectal[month].lectures.female += parseIntFilterEmpty(item[13]);
 
                         // coach
-                        if (item[29] !== '' && underscore.where($scope.annualReport.coach[month].data, {date: item[29], name: item[30]}).length === 0) {
+                        if (item[49] !== '' && underscore.where($scope.annualReport.coach[month].data, {date: item[49], name: item[50]}).length === 0) {
                             $scope.annualReport.coach[month].count++;
                             $scope.annualReport.coach[month].data.push({
-                                date: item[29],
-                                name: item[30]
+                                date: item[49],
+                                name: item[50]
                             });
                         }
                     });
@@ -244,6 +218,10 @@ var monthCtrl = function ($scope, $rootScope, underscore, SweetAlert, $filter) {
         SweetAlert.swal("Good job!", "分析完成!", "success");
         // $scope.$apply();
     };
+}
+
+var parseIntFilterEmpty = function (value) {
+  return parseInt(value) || 0;
 }
 
 app.controller('monthCtrl', monthCtrl);
