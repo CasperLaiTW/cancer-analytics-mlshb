@@ -21,7 +21,7 @@
                 <thead>
                     <tr>
                         <th>類別</th>
-                        <th colspan="14">設站篩檢</th>
+                        <th colspan="15">設站篩檢</th>
                         <th colspan="12">宣導講座</th>
                         <th colspan="17">辦理檳榔防制地方宣導工作</th>
                         <th rowspan="3">訪查檳榔攤</th>
@@ -30,7 +30,7 @@
                     <tr>
                         <th rowspan="2">季別</th>
                         <th colspan="8">口腔黏膜篩檢</th>
-                        <th colspan="6">糞便潛血檢查</th>
+                        <th colspan="7">糞便潛血檢查</th>
                         <th colspan="4">校園宣導</th>
                         <th colspan="4">口腔癌防制</th>
                         <th colspan="4">大腸癌防制</th>
@@ -55,7 +55,8 @@
                         <th>篩檢人數-男性</th>
                         <th>篩檢人數-女性</th>
                         <th>職場設站</th>
-                        <th>篩檢人數</th>
+                        <th>口腔粘膜檢查人數</th>
+                        <th>糞便潛血檢查人數</th>
                         <th>宣導場次</th>
                         <th>總人數</th>
                         <th>男性數</th>
@@ -102,8 +103,9 @@
                         <td><% annualReport.colorectal[key].filter.man + annualReport.colorectal[key].filter.female %></td>
                         <td><% annualReport.colorectal[key].filter.man %></td>
                         <td><% annualReport.colorectal[key].filter.female %></td>
-                        <td><% annualReport.colorectal[key].filter.workplace %></td>
-                        <td><% annualReport.colorectal[key].filter.workplaceCount %></td>
+                        <td><% annualReport.colorectal[key].filter.workplace.count %></td>
+                        <td><% annualReport.colorectal[key].filter.workplace.oral %></td>
+                        <td><% annualReport.colorectal[key].filter.workplace.blood %></td>
                         <td><% value.lectures.school.count %></td>
                         <td><% value.lectures.school.man + value.lectures.school.female %></td>
                         <td><% value.lectures.school.man %></td>

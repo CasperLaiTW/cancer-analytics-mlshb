@@ -62,8 +62,11 @@ var monthCtrl = function ($scope, $rootScope, underscore, SweetAlert, $filter) {
                     count: 0,
                     man: 0,
                     female: 0,
-                    workplace: 0,
-                    workplaceCount: 0
+                    workplace: {
+                        count: 0,
+                        oral: 0,
+                        blood: 0,
+                    }
                 },
                 lectures: {
                     count: 0,
@@ -84,10 +87,10 @@ var monthCtrl = function ($scope, $rootScope, underscore, SweetAlert, $filter) {
     }
 
     $scope.analytics = function () {
-        if ($('#source1').val() === '' || $('#source2').val() === '') {
-            swal("請選擇檔案", "發生錯誤", "error");
-            return;
-        }
+        // if ($('#source1').val() === '' || $('#source2').val() === '') {
+        //     swal("請選擇檔案", "發生錯誤", "error");
+        //     return;
+        // }
         oralSource(colorectalSource);
     }
 
@@ -104,68 +107,70 @@ var monthCtrl = function ($scope, $rootScope, underscore, SweetAlert, $filter) {
                         if (underscore.size(item) === 1) {
                             return;
                         }
-                        var month = new Date(item[2]).getMonth();
+                        var month = item[2];
 
                         // filter
-                        $scope.annualReport.oral[month].filter.count++;
+                        $scope.annualReport.oral[month].filter.count += parseIntFilterEmpty(item[3]);
                         $scope.annualReport.oral[month].filter.man += parseIntFilterEmpty(item[4]);
                         $scope.annualReport.oral[month].filter.female += parseIntFilterEmpty(item[5]);
-                        $scope.annualReport.oral[month].filter.teenager.man += parseIntFilterEmpty(item[7]);
-                        $scope.annualReport.oral[month].filter.teenager.female += parseIntFilterEmpty(item[8]);
-                        $scope.annualReport.oral[month].filter.abor.man += parseIntFilterEmpty(item[10]);
-                        $scope.annualReport.oral[month].filter.abor.female += parseIntFilterEmpty(item[11]);
+                        // teenage
+                        $scope.annualReport.oral[month].filter.teenager.man += parseIntFilterEmpty(item[6]);
+                        $scope.annualReport.oral[month].filter.teenager.female += parseIntFilterEmpty(item[7]);
+                        // abor
+                        $scope.annualReport.oral[month].filter.abor.man += parseIntFilterEmpty(item[8]);
+                        $scope.annualReport.oral[month].filter.abor.female += parseIntFilterEmpty(item[9]);
 
                         // lectures
-                        $scope.annualReport.oral[month].lectures.count++;
-                        $scope.annualReport.oral[month].lectures.man += parseIntFilterEmpty(item[16]);
-                        $scope.annualReport.oral[month].lectures.female += parseIntFilterEmpty(item[17]);
-                        if (item[9] === '學生') {
-                            $scope.annualReport.oral[month].lectures.school.count++;
-                            $scope.annualReport.oral[month].lectures.school.man += parseIntFilterEmpty(item[16]);
-                            $scope.annualReport.oral[month].lectures.school.female += parseIntFilterEmpty(item[17]);
+                        for (var i = 10; i < 22; i+=4) {
+                            if (item[i] !== '') {
+                                $scope.annualReport.oral[month].lectures.school.count++;
+                                $scope.annualReport.oral[month].lectures.school.man += parseIntFilterEmpty(item[i + 1]);
+                                $scope.annualReport.oral[month].lectures.school.female += parseIntFilterEmpty(item[i + 2]);
+                            }
                         }
+
+                        for (var i = 22; i < 40; i+=6) {
+                            if (item[i] !== '') {
+                                $scope.annualReport.oral[month].lectures.count++;
+                                $scope.annualReport.oral[month].lectures.man += parseIntFilterEmpty(item[i + 2]);
+                                $scope.annualReport.oral[month].lectures.female += parseIntFilterEmpty(item[i + 3]);
+                            }
+                        }
+
                         // media
-                        $scope.annualReport.oral[month].media.newspaper += parseIntFilterEmpty(item[23]);
-                        $scope.annualReport.oral[month].media.column += parseIntFilterEmpty(item[25]);
-                        $scope.annualReport.oral[month].media.publication += parseIntFilterEmpty(item[27]);
-                        $scope.annualReport.oral[month].media.magazine += parseIntFilterEmpty(item[29]);
-                        $scope.annualReport.oral[month].media.other += parseIntFilterEmpty(item[31]);
+                        $scope.annualReport.oral[month].media.newspaper += parseIntFilterEmpty(item[43]);
+                        $scope.annualReport.oral[month].media.column += parseIntFilterEmpty(item[45]);
+                        $scope.annualReport.oral[month].media.publication += parseIntFilterEmpty(item[47]);
+                        $scope.annualReport.oral[month].media.magazine += parseIntFilterEmpty(item[49]);
+                        $scope.annualReport.oral[month].media.other += parseIntFilterEmpty(item[51]);
 
                         // tv
-                        $scope.annualReport.oral[month].tv.adv += parseIntFilterEmpty(item[33]);
-                        $scope.annualReport.oral[month].tv.report += parseIntFilterEmpty(item[35]);
-                        $scope.annualReport.oral[month].tv.interview += parseIntFilterEmpty(item[37]);
-                        $scope.annualReport.oral[month].tv.other += parseIntFilterEmpty(item[39]);
+                        $scope.annualReport.oral[month].tv.adv += parseIntFilterEmpty(item[53]);
+                        $scope.annualReport.oral[month].tv.report += parseIntFilterEmpty(item[55]);
+                        $scope.annualReport.oral[month].tv.interview += parseIntFilterEmpty(item[57]);
+                        $scope.annualReport.oral[month].tv.other += parseIntFilterEmpty(item[59]);
 
                         // ads
-                        $scope.annualReport.oral[month].ads.car += parseIntFilterEmpty(item[41]);
-                        $scope.annualReport.oral[month].ads.board += parseIntFilterEmpty(item[43]);
-                        $scope.annualReport.oral[month].ads.wall += parseIntFilterEmpty(item[45]);
-                        $scope.annualReport.oral[month].ads.buman += parseIntFilterEmpty(item[47]);
-                        $scope.annualReport.oral[month].ads.other += parseIntFilterEmpty(item[49]);
+                        $scope.annualReport.oral[month].ads.car += parseIntFilterEmpty(item[61]);
+                        $scope.annualReport.oral[month].ads.board += parseIntFilterEmpty(item[63]);
+                        $scope.annualReport.oral[month].ads.wall += parseIntFilterEmpty(item[65]);
+                        $scope.annualReport.oral[month].ads.buman += parseIntFilterEmpty(item[67]);
+                        $scope.annualReport.oral[month].ads.other += parseIntFilterEmpty(item[69]);
 
                         // marquee
-                        $scope.annualReport.oral[month].marquee += parseIntFilterEmpty(item[51]);
+                        $scope.annualReport.oral[month].marquee += parseIntFilterEmpty(item[71]);
 
                         // cloth
-                        $scope.annualReport.oral[month].cloth += parseIntFilterEmpty(item[53]);
+                        $scope.annualReport.oral[month].cloth += parseIntFilterEmpty(item[73]);
 
                         // other
-                        $scope.annualReport.oral[month].other += parseIntFilterEmpty(item[55]);
+                        $scope.annualReport.oral[month].other += parseIntFilterEmpty(item[75]);
 
                         // area
-                        if (item[57] !== '') {
-                            $scope.annualReport.oral[month].area++;
-                        }
+                        $scope.annualReport.oral[month].area += parseIntFilterEmpty(item[77])
 
                         // coach
-                        if (item[58] !== '' && underscore.where($scope.annualReport.coach[month].data, {date: item[58], name: item[59]}).length === 0) {
-                            $scope.annualReport.coach[month].count++;
-                            $scope.annualReport.coach[month].data.push({
-                                date: item[58],
-                                name: item[59]
-                            });
-                        }
+                        processCoach(month, item[78]);
                     });
                     callback();
                 }
@@ -186,32 +191,57 @@ var monthCtrl = function ($scope, $rootScope, underscore, SweetAlert, $filter) {
                         if (underscore.size(item) === 1) {
                             return;
                         }
-                        var month = new Date(item[2]).getMonth();
+                        var month = item[2];
                         // fiter
-                        $scope.annualReport.colorectal[month].filter.count++;
+                        $scope.annualReport.colorectal[month].filter.count += parseIntFilterEmpty(item[3]);
                         $scope.annualReport.colorectal[month].filter.man += parseIntFilterEmpty(item[4]);
                         $scope.annualReport.colorectal[month].filter.female += parseIntFilterEmpty(item[5]);
-                        $scope.annualReport.colorectal[month].filter.workplace++;
-                        $scope.annualReport.colorectal[month].filter.workplaceCount += item[7] === '' ? 0 : parseIntFilterEmpty(item[7]);
+                        for (var i = 6; i < 15; i+=3) {
+                            if (item[6] !== '') {
+                                $scope.annualReport.colorectal[month].filter.workplace.count++;
+                                $scope.annualReport.colorectal[month].filter.workplace.oral += parseIntFilterEmpty(item[i + 1]);
+                                $scope.annualReport.colorectal[month].filter.workplace.blood += parseIntFilterEmpty(item[i + 2]);
+                            }
+                        }
 
                         // lectures
-                        $scope.annualReport.colorectal[month].lectures.count++;
-                        $scope.annualReport.colorectal[month].lectures.man += parseIntFilterEmpty(item[12]);
-                        $scope.annualReport.colorectal[month].lectures.female += parseIntFilterEmpty(item[13]);
+                        $scope.annualReport.colorectal[month].lectures.count += parseIntFilterEmpty(item[15]);
+                        for (var i = 16; i < 28; i+=4) {
+                            if (item[i] !== '') {
+                                $scope.annualReport.colorectal[month].lectures.man += parseIntFilterEmpty(item[i + 2]);
+                                $scope.annualReport.colorectal[month].lectures.female += parseIntFilterEmpty(item[i + 3]);
+                            }
+                        }
 
                         // coach
-                        if (item[49] !== '' && underscore.where($scope.annualReport.coach[month].data, {date: item[49], name: item[50]}).length === 0) {
-                            $scope.annualReport.coach[month].count++;
-                            $scope.annualReport.coach[month].data.push({
-                                date: item[49],
-                                name: item[50]
-                            });
-                        }
+                        processCoach(month, item[62]);
                     });
                     analyticsComplete();
                 }
             }
         });
+    }
+
+    var processCoach = function (month, item) {
+        if (item !== '') {
+            var report = [];
+            underscore.each(item.split('\n'), function (value, index) {
+                var match = value.match(/(\d{2,3}\.\d{1,2}\.\d{1,2}),?(.*)/);
+                if (match !== null) {
+                    report.push({
+                        date: new Date(match[1]),
+                        name: match[2]
+                    })
+                }
+            });
+
+            underscore.each(report, function (value, index) {
+                if (underscore.where($scope.annualReport.coach[month].data, value).length === 0) {
+                    $scope.annualReport.coach[month].count++;
+                    $scope.annualReport.coach[month].data.push(value);
+                }
+            });
+        }
     }
 
     var analyticsComplete = function () {
