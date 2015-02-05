@@ -87,10 +87,10 @@ var monthCtrl = function ($scope, $rootScope, underscore, SweetAlert, $filter) {
     }
 
     $scope.analytics = function () {
-        // if ($('#source1').val() === '' || $('#source2').val() === '') {
-        //     swal("請選擇檔案", "發生錯誤", "error");
-        //     return;
-        // }
+        if ($('#source1').val() === '' || $('#source2').val() === '') {
+            swal("請選擇檔案", "發生錯誤", "error");
+            return;
+        }
         oralSource(colorectalSource);
     }
 
@@ -107,7 +107,7 @@ var monthCtrl = function ($scope, $rootScope, underscore, SweetAlert, $filter) {
                         if (underscore.size(item) === 1) {
                             return;
                         }
-                        var month = item[2];
+                        var month = item[2] - 1;
 
                         // filter
                         $scope.annualReport.oral[month].filter.count += parseIntFilterEmpty(item[3]);
@@ -191,7 +191,7 @@ var monthCtrl = function ($scope, $rootScope, underscore, SweetAlert, $filter) {
                         if (underscore.size(item) === 1) {
                             return;
                         }
-                        var month = item[2];
+                        var month = item[2] - 1;
                         // fiter
                         $scope.annualReport.colorectal[month].filter.count += parseIntFilterEmpty(item[3]);
                         $scope.annualReport.colorectal[month].filter.man += parseIntFilterEmpty(item[4]);
