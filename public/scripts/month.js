@@ -138,39 +138,39 @@ var monthCtrl = function ($scope, $rootScope, underscore, SweetAlert, $filter) {
                         }
 
                         // media
-                        $scope.annualReport.oral[month].media.newspaper += parseIntFilterEmpty(item[43]);
-                        $scope.annualReport.oral[month].media.column += parseIntFilterEmpty(item[45]);
-                        $scope.annualReport.oral[month].media.publication += parseIntFilterEmpty(item[47]);
-                        $scope.annualReport.oral[month].media.magazine += parseIntFilterEmpty(item[49]);
-                        $scope.annualReport.oral[month].media.other += parseIntFilterEmpty(item[51]);
+                        $scope.annualReport.oral[month].media.newspaper += parseIntFilterEmpty(item[58]);
+                        $scope.annualReport.oral[month].media.column += parseIntFilterEmpty(item[60]);
+                        $scope.annualReport.oral[month].media.publication += parseIntFilterEmpty(item[62]);
+                        $scope.annualReport.oral[month].media.magazine += parseIntFilterEmpty(item[64]);
+                        $scope.annualReport.oral[month].media.other += parseIntFilterEmpty(item[66]);
 
                         // tv
-                        $scope.annualReport.oral[month].tv.adv += parseIntFilterEmpty(item[53]);
-                        $scope.annualReport.oral[month].tv.report += parseIntFilterEmpty(item[55]);
-                        $scope.annualReport.oral[month].tv.interview += parseIntFilterEmpty(item[57]);
-                        $scope.annualReport.oral[month].tv.other += parseIntFilterEmpty(item[59]);
+                        $scope.annualReport.oral[month].tv.adv += parseIntFilterEmpty(item[68]);
+                        $scope.annualReport.oral[month].tv.report += parseIntFilterEmpty(item[70]);
+                        $scope.annualReport.oral[month].tv.interview += parseIntFilterEmpty(item[72]);
+                        $scope.annualReport.oral[month].tv.other += parseIntFilterEmpty(item[74]);
 
                         // ads
-                        $scope.annualReport.oral[month].ads.car += parseIntFilterEmpty(item[61]);
-                        $scope.annualReport.oral[month].ads.board += parseIntFilterEmpty(item[63]);
-                        $scope.annualReport.oral[month].ads.wall += parseIntFilterEmpty(item[65]);
-                        $scope.annualReport.oral[month].ads.buman += parseIntFilterEmpty(item[67]);
-                        $scope.annualReport.oral[month].ads.other += parseIntFilterEmpty(item[69]);
+                        $scope.annualReport.oral[month].ads.car += parseIntFilterEmpty(item[76]);
+                        $scope.annualReport.oral[month].ads.board += parseIntFilterEmpty(item[78]);
+                        $scope.annualReport.oral[month].ads.wall += parseIntFilterEmpty(item[80]);
+                        $scope.annualReport.oral[month].ads.buman += parseIntFilterEmpty(item[82]);
+                        $scope.annualReport.oral[month].ads.other += parseIntFilterEmpty(item[84]);
 
                         // marquee
-                        $scope.annualReport.oral[month].marquee += parseIntFilterEmpty(item[71]);
+                        $scope.annualReport.oral[month].marquee += parseIntFilterEmpty(item[86]);
 
                         // cloth
-                        $scope.annualReport.oral[month].cloth += parseIntFilterEmpty(item[73]);
+                        $scope.annualReport.oral[month].cloth += parseIntFilterEmpty(item[88]);
 
                         // other
-                        $scope.annualReport.oral[month].other += parseIntFilterEmpty(item[75]);
+                        $scope.annualReport.oral[month].other += parseIntFilterEmpty(item[90]);
 
                         // area
-                        $scope.annualReport.oral[month].area += parseIntFilterEmpty(item[77])
+                        $scope.annualReport.oral[month].area += parseIntFilterEmpty(item[92])
 
                         // coach
-                        processCoach(month, item[78]);
+                        processCoach(month, item[94]);
                     });
                     callback();
                 }
