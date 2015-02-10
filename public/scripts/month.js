@@ -2,7 +2,37 @@ var monthCtrl = function ($scope, $rootScope, underscore, SweetAlert, $filter) {
     $scope.annualReport = {
         oral: [],
         colorectal: [],
-        coach: []
+        coach: [],
+        goal: []
+    };
+
+    var area = [
+        '苗栗市',
+        '通霄鎮',
+        '苑裡鎮',
+        '西湖鄉',
+        '頭屋鄉',
+        '公館鄉',
+        '銅鑼鄉',
+        '三義鄉',
+        '竹南鎮',
+        '頭份鎮',
+        '後龍鎮',
+        '造橋鄉',
+        '三灣鄉',
+        '南庄鄉',
+        '大湖鄉',
+        '卓蘭鎮',
+        '獅潭鄉',
+        '泰安鄉'
+    ];
+
+    var detial = {
+        store: 0,
+        school: 0,
+        workplace: 0,
+        normal: 0,
+        prevent: 0
     };
 
     function initReport() {
@@ -80,6 +110,12 @@ var monthCtrl = function ($scope, $rootScope, underscore, SweetAlert, $filter) {
                 data: []
             }
         }
+        underscore.each(area, function (value) {
+            $scope.annualReport.goal.push({
+                name: value,
+                data: underscore.clone(detial)
+            });
+        });
     }
 
     $scope.init = function () {
@@ -103,12 +139,13 @@ var monthCtrl = function ($scope, $rootScope, underscore, SweetAlert, $filter) {
                         callback();
                         return;
                     }
+                    console.log(results.data);
                     underscore.each(results.data, function (item, key) {
                         if (underscore.size(item) === 1) {
                             return;
                         }
                         var month = item[2] - 1;
-
+                        var entity = underscore.findWhere($scope.annualReport.goal, {name: item[1]});
                         // filter
                         $scope.annualReport.oral[month].filter.count += parseIntFilterEmpty(item[3]);
                         $scope.annualReport.oral[month].filter.man += parseIntFilterEmpty(item[4]);
@@ -126,6 +163,7 @@ var monthCtrl = function ($scope, $rootScope, underscore, SweetAlert, $filter) {
                                 $scope.annualReport.oral[month].lectures.school.count++;
                                 $scope.annualReport.oral[month].lectures.school.man += parseIntFilterEmpty(item[i + 1]);
                                 $scope.annualReport.oral[month].lectures.school.female += parseIntFilterEmpty(item[i + 2]);
+                                entity.data.school++;
                             }
                         }
 
@@ -134,6 +172,14 @@ var monthCtrl = function ($scope, $rootScope, underscore, SweetAlert, $filter) {
                                 $scope.annualReport.oral[month].lectures.count++;
                                 $scope.annualReport.oral[month].lectures.man += parseIntFilterEmpty(item[i + 2]);
                                 $scope.annualReport.oral[month].lectures.female += parseIntFilterEmpty(item[i + 3]);
+                                entity.data.normal++;
+                            }
+                        }
+
+                        for (var i = 40; i < 58; i+=6) {
+                            if (item[i] !== '') {
+                                var entity = underscore.findWhere($scope.annualReport.goal, {name: item[1]});
+                                entity.data.workplace++;
                             }
                         }
 
@@ -167,10 +213,13 @@ var monthCtrl = function ($scope, $rootScope, underscore, SweetAlert, $filter) {
                         $scope.annualReport.oral[month].other += parseIntFilterEmpty(item[90]);
 
                         // area
-                        $scope.annualReport.oral[month].area += parseIntFilterEmpty(item[92])
+                        $scope.annualReport.oral[month].area += parseIntFilterEmpty(item[92]);
 
+                        if (parseIntFilterEmpty(item[92]) > 0) {
+                            entity.data.store += parseIntFilterEmpty(item[92]);
+                        }
                         // coach
-                        processCoach(month, item[94]);
+                        processCoach(month, item[95]);
                     });
                     callback();
                 }
@@ -192,6 +241,7 @@ var monthCtrl = function ($scope, $rootScope, underscore, SweetAlert, $filter) {
                             return;
                         }
                         var month = item[2] - 1;
+                        var entity = underscore.findWhere($scope.annualReport.goal, {name: item[1]});
                         // fiter
                         $scope.annualReport.colorectal[month].filter.count += parseIntFilterEmpty(item[3]);
                         $scope.annualReport.colorectal[month].filter.man += parseIntFilterEmpty(item[4]);
@@ -210,11 +260,12 @@ var monthCtrl = function ($scope, $rootScope, underscore, SweetAlert, $filter) {
                             if (item[i] !== '') {
                                 $scope.annualReport.colorectal[month].lectures.man += parseIntFilterEmpty(item[i + 2]);
                                 $scope.annualReport.colorectal[month].lectures.female += parseIntFilterEmpty(item[i + 3]);
+                                entity.data.prevent++;
                             }
                         }
 
                         // coach
-                        processCoach(month, item[62]);
+                        processCoach(month, item[63]);
                     });
                     analyticsComplete();
                 }
@@ -245,6 +296,7 @@ var monthCtrl = function ($scope, $rootScope, underscore, SweetAlert, $filter) {
     }
 
     var analyticsComplete = function () {
+        console.log($scope.annualReport);
         SweetAlert.swal("Good job!", "分析完成!", "success");
         // $scope.$apply();
     };

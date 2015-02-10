@@ -14,4 +14,4 @@
 Route::get('/', ['as' => 'default', 'uses' => 'HomeController@index']);
 Route::post('analytics', ['as' => 'analytics', 'uses' => 'HomeController@analytics']);
 
-Route::get('/month', ['as' => 'month', 'uses' => 'MonthController@index']);
+Route::get('month', ['as' => 'month', 'uses' => 'MonthController@index']);
